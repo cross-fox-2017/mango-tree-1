@@ -1,7 +1,7 @@
 "use strict"
 
 class MangoTree {
-  
+
   // Initialize a new MangoTree
   constructor() {
   }
@@ -30,3 +30,14 @@ class Mango {
 function getRandomNumber() {
 }
 
+var tree =  new MangoTree()
+console.log(`the tree is alive! :smile:`)
+
+do {
+  tree.grow()
+  tree.produceMangoes()
+
+  console.log(`[Year ${tree.age} Report] Height = ${tree.height} | Fruits harvested = ${tree.harversted}`);
+} while (tree._healthy != false)
+
+console.log(`The tree has met its end. :sad:`);
