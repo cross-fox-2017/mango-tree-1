@@ -49,11 +49,19 @@ class MangoTree {
 
   // Get some fruits
   harvest() {
+    this.bad = 0
+    this.good = 0
     this.harvested = this.jumlahBuah.length
-    this.jumlahBuah = []
-    for (let i = 0; i < this.jumlahBuah.length; i++) {
-      this.jumlahBuah[i]
+    if (this.jumlahBuah != []){
+      for (let i = 0; i < this.jumlahBuah.length; i++) {
+        if (this.jumlahBuah[i].quality == "Bad"){
+          this.bad += 1
+        } else {
+          this.good += 1
+        }
+      }
     }
+    this.jumlahBuah = []
   }
 }
 
@@ -84,7 +92,7 @@ do {
   tree.produceMangoes()
   tree.harvest()
 
-  console.log(`[Year ${tree.age} Report] Height = ${tree.height} m | Fruits harvested = ${tree.harvested}`);
+  console.log(`[Year ${tree.age} Report] Height = ${tree.height} m | Fruits harvested = ${tree.harvested} (${tree.good} good, ${tree.bad} bad)`);
 } while (tree.healthy != false)
 
 console.log(`The tree has met its end. :sad:`);
