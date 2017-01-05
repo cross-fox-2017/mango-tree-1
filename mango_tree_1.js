@@ -7,7 +7,7 @@ class MangoTree {
     this.age = 0
     this.height = 0
     this.maxBuah = 20
-    this.jumlahBuah = 0
+    this.jumlahBuah = []
     this.healthy = true
   }
 
@@ -19,13 +19,19 @@ class MangoTree {
     return this.height
   }
   getFruits(){
-    return this.jumlahBuah
+    return this.jumlahBuah.length
   }
   getHealtyStatus(){
     return this.healthy
   }
   // Grow the tree
   grow() {
+    if (this.age < 20){
+      this.age++
+      this.height += getRandomNumber()
+    } else {
+      this.healthy = false
+    }
   }
 
   // Produce some mangoes
@@ -40,10 +46,12 @@ class MangoTree {
 class Mango {
   // Produce a mango
   constructor() {
+    this.name = "Mango"
   }
 }
 
 function getRandomNumber() {
+  return Math.random()*10
 }
 
 var tree =  new MangoTree()
