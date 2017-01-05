@@ -9,6 +9,9 @@ class MangoTree {
     this.maxBuah = 20
     this.jumlahBuah = []
     this.healthy = true
+    this.harvested = 0
+    this.good = 0
+    this.bad = 0
   }
 
   // Get current states here
@@ -28,7 +31,8 @@ class MangoTree {
   grow() {
     if (this.age < 20){
       this.age++
-      this.height += getRandomNumber()
+      var plus = getRandomNumber()/10
+      this.height += Number(plus.toPrecision(4))
     } else {
       this.healthy = false
     }
@@ -36,10 +40,20 @@ class MangoTree {
 
   // Produce some mangoes
   produceMangoes() {
+    if (this.healthy == true){
+      for (let i = 0; i < getRandomNumber(); i++) {
+        this.jumlahBuah.push(new Mango)
+      }
+    }
   }
 
   // Get some fruits
   harvest() {
+    this.harvested = this.jumlahBuah.length
+    this.jumlahBuah = []
+    for (let i = 0; i < this.jumlahBuah.length; i++) {
+      this.jumlahBuah[i]
+    }
   }
 }
 
@@ -47,11 +61,19 @@ class Mango {
   // Produce a mango
   constructor() {
     this.name = "Mango"
+    this.quality = quality()
   }
 }
 
+function quality(){
+  if (getRandomNumber() < 5){
+    return "Bad"
+  } else {
+    return "Good"
+  }
+}
 function getRandomNumber() {
-  return Math.random()*10
+  return Math.floor(Math.random()*10)+1
 }
 
 var tree =  new MangoTree()
@@ -60,8 +82,9 @@ console.log(`the tree is alive! :smile:`)
 do {
   tree.grow()
   tree.produceMangoes()
+  tree.harvest()
 
-  console.log(`[Year ${tree.age} Report] Height = ${tree.height} | Fruits harvested = ${tree.harversted}`);
+  console.log(`[Year ${tree.age} Report] Height = ${tree.height} m | Fruits harvested = ${tree.harvested}`);
 } while (tree.healthy != false)
 
 console.log(`The tree has met its end. :sad:`);
