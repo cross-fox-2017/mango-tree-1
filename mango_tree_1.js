@@ -25,7 +25,7 @@ class MangoTree {
   }
   // Grow the tree
   grow() {
-    
+
   }
 
   // Produce some mangoes
@@ -44,4 +44,5 @@ class Mango {
 }
 
 function getRandomNumber() {
+  return Math.floor(Math.random() * 10)
 }
