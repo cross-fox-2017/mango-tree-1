@@ -27,16 +27,20 @@ class MangoTree {
   grow() {
     if (this._age <= 10) {
       this._height += getRandomNumber() / 10
-      console.log(this._height);
+      // console.log(this._height);
     }
     if (this._age === 20) {
       this._healty = false
     }
-
   }
 
   // Produce some mangoes
   produceMangoes() {
+    for (var i = 0; i < getRandomNumber(); i++) {
+      this._fruits.push(new Mango)
+      // console.log(this._fruits);
+    }
+    return this._fruits
   }
 
   // Get some fruits
@@ -47,6 +51,7 @@ class MangoTree {
 class Mango {
   // Produce a mango
   constructor() {
+    this._fruitStatus = getRandomNumber()
   }
 }
 
@@ -56,4 +61,5 @@ function getRandomNumber() {
 
 var tree = new MangoTree()
 
-tree.grow()
+// tree.grow()
+console.log(tree.produceMangoes());
