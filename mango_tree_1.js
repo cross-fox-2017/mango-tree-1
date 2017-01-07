@@ -12,7 +12,7 @@ class MangoTree {
 
   // Get current states here
   getAge(){
-    return this._age 
+    return this._age += 1
   }
   getHeight(){
     return this.Height
@@ -25,6 +25,13 @@ class MangoTree {
   }
   // Grow the tree
   grow() {
+    if (this._age <= 10) {
+      this._height += getRandomNumber() / 10
+      console.log(this._height);
+    }
+    if (this._age === 20) {
+      this._healty = false
+    }
 
   }
 
@@ -46,3 +53,7 @@ class Mango {
 function getRandomNumber() {
   return Math.floor(Math.random() * 10)
 }
+
+var tree = new MangoTree()
+
+tree.grow()
