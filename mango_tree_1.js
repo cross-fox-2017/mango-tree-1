@@ -12,7 +12,7 @@ class MangoTree {
 
   // Get current states here
   getAge(){
-    return this._age += 1
+    return this._age 
   }
   getHeight(){
     return this.Height
