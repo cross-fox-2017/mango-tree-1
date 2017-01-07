@@ -74,6 +74,7 @@ class Mango {
 function getRandomNumber() {
 }
 
+// pohon berhenti di umur 7 tahun
 var tree = new MangoTree()
 do {
     tree.grow();
