@@ -5,7 +5,7 @@ class MangoTree {
   // Initialize a new MangoTree
   constructor() {
     this._age = 0
-    this._height = 0
+    this._height = 0.0
     this._fruits = []
     this._healty = true
   }
@@ -15,13 +15,13 @@ class MangoTree {
     return this._age += 1
   }
   getHeight(){
-    return this.Height
+    return this._height.toFixed(1)
   }
   getFruits(){
     return this._fruits
   }
   getHealty(){
-    return this.healty
+    return this._healty
   }
   // Grow the tree
   grow() {
@@ -45,6 +45,8 @@ class MangoTree {
 
   // Get some fruits
   harvest() {
+    this._harvest = this._fruits.length
+    return this._harvest
   }
 }
 
@@ -62,4 +64,13 @@ function getRandomNumber() {
 var tree = new MangoTree()
 
 // tree.grow()
-console.log(tree.produceMangoes());
+// console.log(tree.produceMangoes());
+
+do {
+  tree.grow()
+  tree.produceMangoes()
+
+  console.log(`[Year ${tree.getAge()} Report] Height = ${tree.getHeight()} | Fruits harvested = ${tree.harvest()}`);
+} while (tree.getHealty() != false);
+
+console.log(`The tree has met its end. :sad:`);
