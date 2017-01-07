@@ -17,16 +17,17 @@ class MangoTree {
   grow(){
 
     this._umur++;
+      if(this._umur <= 10)
+      {
+        this._tinggi += getRandomHeight();
+      }
+
 
       if(this._umur  == 20)
       {
         this._health = false;
 
-      }else{
-
-          this._tinggi += getRandomHeight();
       }
-
   }
 
   // Produce some mangoes
