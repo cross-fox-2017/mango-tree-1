@@ -38,7 +38,7 @@ class MangoTree {
 
       this._manggo = new Manggo();
 
-      this._qty =   this._manggo._qty;
+      this._qty =   this._manggo.getFruits();
       this._bad = this._manggo.getBad();
       this._good = this._manggo.getGood();
 
@@ -56,14 +56,13 @@ class Manggo{
 
     constructor(){
 
-        this._qty = this.getFruits();
+        this._qty = Math.floor((Math.random() * 9) + 1);
         this._bad = Math.floor((Math.random() * this._qty) + 1);
         this._good  = this._qty - this._bad;
     }
 
     getFruits() {
-          var num = Math.floor((Math.random() * 9) + 1);
-          return num;
+          return this._qty;
     }
 
 
