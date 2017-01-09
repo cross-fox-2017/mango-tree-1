@@ -8,6 +8,9 @@ class MangoTree {
     this.Height = getRandomNumber();
     this.Quantity = 0;
     this.Health = true;
+    this.Quality = [];
+    this.badQuality = 0;
+    this.goodQuality = 0;
   }
 
   // Get current states here
@@ -27,17 +30,31 @@ class MangoTree {
 
   }
 
-  // Produce some mangoes
+    // Produce some mangoes
   produceMangoes() {
     var fruits = Math.floor((Math.random() * 10)+ 1);
-    return this.Quantity = fruits;
+    this.Quantity = fruits;
 
+    for(var i = 0; i < this.Quantity;i++){
+      var buah = new Manggo;
+      buah.qualitymango();
+      this.Quality.push(buah._kualitas);
+      if(buah._kualitas == "bad"){
+        this.badQuality += 1;
+      }else{
+        this.goodQuality += 1;
+      }
+
+    }
   }
 
+  resetHarvest(){
+    this.badQuality = 0;
+    this.goodQuality = 0;
+    this.Quality = [];
+  }
   // Get some fruits
-  harvest() {
-    return this.produceMangoes();
-  }
+
 }
 
 
@@ -46,6 +63,18 @@ function getRandomNumber() {
   return num;
 }
 
+class Manggo{
+  constructor(){
+    this._kualitas = "";
+  }
+
+  qualitymango(){
+    var qualitys = ['bad','good']
+    this._kualitas = qualitys[Math.round(Math.random()*1)];
+  }
+}
+
+
 var tree = new MangoTree();
 console.log('The tree is alive! :smile:')
 
@@ -53,7 +82,8 @@ do {
   tree.grow();
   tree.produceMangoes();
 
-  console.log(`[Year ${tree.Age}] Height = ${Math.floor(tree.Height)} Meter | Fruit Harvested = ${tree.harvest()}`);
-} while (tree.Health != false)
+
+  console.log(`[Year ${tree.Age}] Height = ${Math.floor(tree.Height)} Meter | Fruit Harvested = ${tree.Quantity} (${tree.goodQuality} good, ${tree.badQuality} bad)`);
+  tree.resetHarvest();} while (tree.Health != false)
 
 console.log(`The tree has met its end. :sad:`);
