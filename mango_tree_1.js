@@ -6,8 +6,11 @@ class MangoTree {
   constructor() {
         this._umur = 0;
         this._tinggi = getRandomHeight();
-        this._qty = 0;
+        this._qty = 0
         this._health = true;
+        this._bad = 0;
+        this._good = 0;
+        this._manggo = 0;
   }
 
   //Get current states here
@@ -33,7 +36,13 @@ class MangoTree {
   // Produce some mangoes
   produceMangoes() {
 
-      return this._qty = getRandomFruits();
+      this._manggo = new Manggo();
+
+      this._qty =   this._manggo._qty;
+      this._bad = this._manggo.getBad();
+      this._good = this._manggo.getGood();
+
+      return this._qty;
   }
 
   // Get some fruits
@@ -43,10 +52,30 @@ class MangoTree {
   }
 }
 
+class Manggo{
 
-function getRandomFruits() {
-      var num = Math.floor((Math.random() * 9) + 1);
-      return num;
+    constructor(){
+
+        this._qty = this.getFruits();
+        this._bad = Math.floor((Math.random() * this._qty) + 1);
+        this._good  = this._qty - this._bad;
+    }
+
+    getFruits() {
+          var num = Math.floor((Math.random() * 9) + 1);
+          return num;
+    }
+
+
+    getBad(){
+
+        return this._bad;
+    }
+
+    getGood(){
+        return this._good;
+    }
+
 }
 
 function getRandomHeight(){
@@ -63,7 +92,7 @@ do {
     tree.grow();
     tree.produceMangoes();
 
-    console.log(`[Year ${tree._umur} Report] Height = ${tree._tinggi.toFixed(2)} Meter | Fruits Harvested = ${tree.harvest()}`);
+    console.log(`[Year ${tree._umur} Report] Height = ${tree._tinggi.toFixed(2)} Meter | Fruits Harvested = ${tree.harvest()} (${tree._bad} BAD QUALITY , ${tree._good} GOOD QUALITY)`);
 } while (tree._health != false)
 
 console.log(`The tree has met its end. :sad:`);
