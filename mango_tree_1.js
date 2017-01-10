@@ -41,25 +41,26 @@ class MangoTree {
 
   // Produce some mangoes
   produceMangoes() {
-    for(var n = 1; n <= getRandomNumber() * 5; n++) {
+    for(var n = 0; n <= getRandomNumber() * 10; n++) {
       this._fruits.push(new Mango())
     }
   }
 
   // Get some fruits
   harvest() {
-    this._goodFruit = 0
-    this._badFruit  = 0
-
     this._harvested = this._fruits.length
-    this._fruits.forEach((fruit) => {
-      if(fruit._quality == 'good') {
-        this._goodFruit += 1
-      } else {
-        this._badFruit += 1
+    this._goodFruits = 0
+    this._badFruits = 0
+
+    for (var x = 0; x < this._fruits.length; x++) {
+      if ( this._fruits[x]['_quality'] == 'good') {
+        this._goodFruits++
       }
-    })
-    this.fruits = []
+      if (this._fruits[x]['_quality'] == 'bad') {
+        this._badFruits++
+      }
+    }
+      this._fruits = []
   }
 }
 
@@ -83,7 +84,7 @@ do {
   tree.produceMangoes()
   tree.harvest()
 
-  console.log(`[Year ${tree._age} Report] Height = ${tree._height.toFixed(2)} | Fruits harvested = ${tree._harvested} ${tree._goodFruit} Good ${tree._badFruit} Bad`)
+  console.log(`[Year ${tree._age} Report] Height = ${tree._height.toFixed(2)} | Fruits harvested = ${tree._harvested} ${tree._goodFruits} Good ${tree._badFruits} Bad`)
 } while (tree._health != false)
 
 console.log(`The tree has met is end! :bad:`)
