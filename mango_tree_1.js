@@ -1,47 +1,78 @@
 "use strict"
 
 class MangoTree {
-
-  // Initialize a new MangoTree
   constructor() {
-    this.age = 0
-    this.height = 0
-    this.goodFruits = 0
-    this.badFruits = 0
-    this.status = true
+    this._age = 0
+    this._height = 0
+    this._fruits = []
+    this._harvested = 0
+    this._healthy = true
   }
 
-  // Get current states here
-
-  getFruits(){
-    this.goodFruits = Math.floor((Math.random() * 10))
-    this.badFruits = Math.floor((Math.random() * 10))
+  grow(){
+    this._age++
+    if (this._age < 23) {
+      this._height += getRandomNumber() / 10
+    }
+    if (this._age == 30) {
+      this._healthy = false
+    }
   }
 
-  // Grow the tree
-  grow() {
-    this.age++
-    if (this.age < 17) {
-      this.height += Math.random()
-      this.status = true
+  age(){
+    return this._age
+  }
+
+  produceMangoes(){
+    for (var a = 0; a < getRandomNumber() * 10; a++) {
+      this._fruits.push( new Mango() )   // class mango dipake buat ngisi array fruits (push). isinya either 'good' or 'bad'
     }
-    else if (this.age == 30) {
-      this.status = false
+  }
+
+  harvest(){
+    this._harvested = this._fruits.length
+    this._goodFruits = 0
+    this._badFruits = 0
+
+    for (var x = 0; x < this._fruits.length; x++) {
+      if ( this._fruits[x]['_quality'] == 'good') {
+        this._goodFruits++
+      }
+      if (this._fruits[x]['_quality'] == 'bad') {
+        this._badFruits++
+      }
     }
+      this._fruits = []
   }
 
 }
 
-let harvest = new MangoTree()
+// buat generate mango dengan kualitas good or bad
+class Mango {
+  constructor() {
+    let status = ['good', 'bad']
+    this._quality = status[Math.floor(Math.random() *2)]
+    return this._quality
+  }
+}
 
-console.log(`The tree is alive! :smile`);
+// generate random number 0-1
+function getRandomNumber () {
+  return Math.random()
+}
 
-while (harvest.status == true){
-  harvest.grow()
-  harvest.getFruits()
-  
-  console.log(`[Year ${harvest.age} Report] Height = ${harvest.height} m | Fruits harvested = ${harvest.goodFruits + harvest.badFruits} (${harvest.goodFruits} good, ${harvest.badFruits} bad)`);
+// Driver code
+console.log(`\nThe tree is alive! :smile:\n`);
+
+let tree = new MangoTree()
+
+while (tree._healthy !== false){
+  //console.log(tree._fruits);
+  tree.grow()
+  tree.produceMangoes()
+  tree.harvest()
+  console.log(`[Year ${tree._age} Report] Height = ${tree._height} m | Fruits harvested = ${tree._harvested} ${tree._goodFruits} good ${tree._badFruits} bad`);
 
 }
 
-console.log(`The tree has met its end :sad:`);
+console.log(`\nThe tree has met its end :sad:\n`);
