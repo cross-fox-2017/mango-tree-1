@@ -9,6 +9,8 @@ class MangoTree {
     this._fruits = []
     this._healty = true
     this._harvest = 0
+    this._bad = 0
+    this._good = 0
   }
 
   // Get current states here
@@ -38,20 +40,28 @@ class MangoTree {
 
   // Produce some mangoes
   produceMangoes() {
-
+    for (var i = 0; i < getRandomNumber(); i++) {
+      this._fruits.push(new Manggo)
+    }
   }
 
   // Get some fruits
   harvest() {
-    this._harvest = getRandomNumber()
-    return this._harvest
+    
   }
 }
 
 class Mango {
   // Produce a mango
   constructor() {
-
+    this.quality = quality()
+  }
+  quality(){
+    if (getRandomNumber() < 5) {
+      return 'Bad'
+    }else {
+      return 'Good'
+    }
   }
 }
 
