@@ -41,20 +41,33 @@ class MangoTree {
   // Produce some mangoes
   produceMangoes() {
     for (var i = 0; i < getRandomNumber(); i++) {
-      this._fruits.push(new Manggo)
+      this._fruits.push(new Mango())
     }
   }
 
   // Get some fruits
   harvest() {
-    
+    this._bad = 0
+    this._good = 0
+    this._harvest = this._fruits.length
+    // console.log(this._fruits);
+    if (this._fruits != 0) {
+      for (var i = 0; i < this._fruits.length; i++) {
+        if (this._fruits[i].quality == 'Bad') {
+          this._bad += 1
+        }else {
+          this._good += 1
+        }
+      }
+    }
+    this._fruits = []
   }
 }
 
 class Mango {
   // Produce a mango
   constructor() {
-    this.quality = quality()
+    this.quality = this.quality()
   }
   quality(){
     if (getRandomNumber() < 5) {
@@ -66,7 +79,7 @@ class Mango {
 }
 
 function getRandomNumber() {
-  return Math.floor(Math.random() * 10)
+  return Math.floor(Math.random() * 10) +1
 }
 
 var tree = new MangoTree()
@@ -76,8 +89,10 @@ var tree = new MangoTree()
 console.log(`These tree is alive! :smile:`);
 do {
   tree.grow()
+  tree.produceMangoes()
+  tree.harvest()
 
-  console.log(`[Year ${tree.getAge()} Report] Height = ${tree.getHeight()} | Fruits harvested = ${tree.harvest()}`);
+  console.log(`[Year ${tree.getAge()} Report] Height = ${tree.getHeight()} | Fruits harvested = ${tree._harvest} (${tree._good}) good, ${tree._bad} Bad `);
 } while (tree.getHealty() != false);
 
 console.log(`The tree has met its end. :sad:`);
